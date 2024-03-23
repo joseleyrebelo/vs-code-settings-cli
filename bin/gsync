@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+if [-d "$1" ]; then
+  local from=$1
+  local to=$2
+  if [!-d "$2" ]; then
+    to="."
+  fi
+
+  syncnwatch "$from" "$to" &
+  local watchPID=$!
+
+  fswatch --batch-marker=EOF -xn $1 | while read file event; do
+    sync_folder $@
+  done
+else
+  echo "I required a first path argument (ssh or directory)"
+fi
+
+# use sync watched to sync vscode folder with repo folder
+# verify if content is the same
+# ask for resolve
+# commit resolve
+# updating repo folder updates the vscode
+# as well as updating the vscode updates the repo
+# commit updates ??
+
+# create branch representing a "computer"
+# when merged to main

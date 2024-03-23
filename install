@@ -1,0 +1,8 @@
+#!/bin/zsh
+# ⚠️ This is a gist - not cross-tested. Read through; use it diligently.
+
+source lib/iutil
+
+ensure_dependency syncnwatch
+
+install_bin_on_cli
